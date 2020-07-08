@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# General bug fixes for autobuild
+cd data/vvg-2d4d-master
+# fix typo in Results.Rmd
+sed  's/``` {/```{/g' Supplement.Rmd > Supplement_fix.Rmd
+sed  's/``` {/```{/g' Results.Rmd > Results_fix.Rmd
+
+# Remove unnecessary image loading
+sed 's/load(".Rdata")/#load(".Rdata")/g' Supplement_fix.Rmd > Supplement_fix2.Rmd
+sed 's/load(".Rdata")/#load(".Rdata")/g' Results_fix.Rmd > Results_fix2.Rmd
+
+mv Results_fix2.Rmd Results.Rmd
+mv Supplement_fix2.Rmd Supplement.Rmd
+
+cd ..
+cd ..
